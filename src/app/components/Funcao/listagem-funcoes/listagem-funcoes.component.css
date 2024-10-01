@@ -1,0 +1,25 @@
+.dadosFuncoes{
+    padding: 30px 30px 30px 30px;
+}
+
+.cabecalho{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.titulo{
+    position: absolute;
+    left: 5px;
+}
+
+.tabela{
+    width: 100%;
+    padding-top: 30px;
+}
+.divAutoComplete{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.autoCompleteInput{
+    width: 500px;
+}
