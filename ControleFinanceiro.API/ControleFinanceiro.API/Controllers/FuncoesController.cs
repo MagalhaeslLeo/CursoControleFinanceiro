@@ -62,7 +62,7 @@ namespace ControleFinanceiro.API.Controllers
                     Name = funcoes.Name,
                     Descricao = funcoes.Descricao
                 };
-                await _funcaoRepositorio.AdicionarFuncao(funcao);
+                await _funcaoRepositorio.AtualizarFuncao(funcao);
                 return Ok(new
                 {
                     mensagem = $"Função {funcao.Name} atualizada com sucesso"

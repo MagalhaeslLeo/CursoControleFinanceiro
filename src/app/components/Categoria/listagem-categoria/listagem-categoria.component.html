@@ -1,7 +1,7 @@
 <div *ngIf="!categorias">
     <mat-progress-bar mode="buffer"></mat-progress-bar>
     </div>
-<div class="dadosCategoria" *ngIf="categorias">
+<div class="dadosCategoria">
     <div class="cabecalho">
         <mat-grid-list cols="2" rowHeight="50px" >
             <mat-grid-tile>
@@ -31,6 +31,7 @@
     </div>
 
     <table
+    *ngIf="categorias"
      mat-table
      matSort
      [dataSource] = "categorias" 
