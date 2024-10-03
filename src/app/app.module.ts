@@ -34,7 +34,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { NovaCategoriaComponent } from './components/Categoria/nova-categoria/nova-categoria.component';
 import { AtualizarCategoriaComponent } from './components/Categoria/atualizar-categoria/atualizar-categoria.component';
-import { ListagemFuncoesComponent } from './components/Funcao/listagem-funcoes/listagem-funcoes.component';
+import { DialogExclusaoFuncoesComponent, ListagemFuncoesComponent } from './components/Funcao/listagem-funcoes/listagem-funcoes.component';
 import { NovaFuncaoComponent } from './components/Funcao/nova-funcao/nova-funcao.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/atualizar-funcao.component';
 
@@ -47,7 +47,8 @@ import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/a
     DialogExclusaoCategoriaComponent,
     ListagemFuncoesComponent,
     NovaFuncaoComponent,
-    AtualizarFuncaoComponent
+    AtualizarFuncaoComponent,
+    DialogExclusaoFuncoesComponent
   ],
   imports: [
     BrowserModule,

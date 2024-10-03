@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, startWith, map } from 'rxjs';
@@ -25,7 +27,9 @@ paginator: MatPaginator;
 @ViewChild(MatSort, {static:true})
 sort: MatSort;
 
-  constructor(private funcoesService: FuncoesService){ }
+  constructor(private funcoesService: FuncoesService,
+    private dialog: MatDialog
+  ){ }
 
   ngOnInit(): void {
       this.funcoesService.PegarTodos().subscribe(resultado => {
@@ -63,5 +67,42 @@ sort: MatSort;
     }
 
     return this.opcoesFuncoes.filter(funcao=> funcao.toLowerCase().includes(nome.toLowerCase()));
+  }
+
+  AbrirDialog(funcaoID: string, nome: string): void{
+this.dialog.open(DialogExclusaoFuncoesComponent, {
+  data:{
+    funcaoID: funcaoID,
+    nome: nome
+  },
+}).afterClosed().subscribe(resultado =>{
+  if(resultado === true){
+    this.funcoesService.PegarTodos().subscribe(dados=>{
+      this.funcoes.data = dados;
+      this.funcoes.paginator = this.paginator;
+    });
+    this.displayedColumns = this.ExibirColunas();
+  }
+});
+  }
+}
+
+@Component({
+  selector: 'app-dialog-exclusao-funcoes',
+  templateUrl: 'dialog-exclusao-funcoes.html'
+})
+export class DialogExclusaoFuncoesComponent{
+  constructor(@Inject(MAT_DIALOG_DATA) public data : any,
+  private funcoesService: FuncoesService,
+  private snackBar: MatSnackBar){}
+
+  ExcluirFuncao(funcaoID: string): void{
+    this.funcoesService.ExcluirFuncao(funcaoID).subscribe(resultado =>{
+      this.snackBar.open(resultado.mensagem, '', {
+        duration: 2000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top'
+      });
+    });
   }
 }

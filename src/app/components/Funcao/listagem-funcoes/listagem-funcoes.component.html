@@ -49,7 +49,7 @@
                     [routerLink]="['/funcoes', 'atualizarfuncao', funcao.id]">
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-mini-fab color="warn">
+                    <button mat-mini-fab color="warn" (click)="AbrirDialog(funcao.id, funcao.name)">
                         <mat-icon>delete_forever</mat-icon>
                     </button>
                 </td>
