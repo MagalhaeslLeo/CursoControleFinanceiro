@@ -60,17 +60,12 @@
                                 <input type="text" formControlName="nomeusuario"
                                  matInput placeholder="Digite o seu nome de usuário"
                                  required minLength="6" maxLength="50"/>
-                                 <div *ngIf="propriedade.nomeusuario.invalid">
-                                    <mat-error *ngIf="propriedade.nomeusuario.touched">
-                                        <sup>*</sup> Digite o seu nome de usuário
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.nomeusuario.errors?.minlength">
-                                        <sup>*</sup> Use mais caracteres
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.nomeusuario.errors?.maxlength">
-                                        <sup>*</sup> Use menos caracteres
-                                    </mat-error>
-                                 </div>
+                                 <mat-error *ngIf="propriedade.nomeusuario.invalid">
+                                    <sup>*</sup>
+                                    <span *ngIf="propriedade.nomeusuario.errors?.required">Digite o seu nome de usuário</span>
+                                    <span *ngIf="propriedade.nomeusuario.errors?.minlength">Use mais caracteres</span>
+                                    <span *ngIf="propriedade.nomeusuario.errors?.maxlength">Use menos caracteres</span>
+                                  </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -82,17 +77,12 @@
                                 <input type="text" formControlName="cpf"
                                  matInput placeholder="Digite o seu CPF"
                                  required minLength="1" maxLength="20"/>
-                                 <div *ngIf="propriedade.cpf.invalid">
-                                    <mat-error *ngIf="propriedade.cpf.touched">
-                                        <sup>*</sup> Digite o seu CPF
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.cpf.errors?.minlength">
-                                        <sup>*</sup> Use mais caracteres
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.cpf.errors?.maxlength">
-                                        <sup>*</sup> Use menos caracteres
-                                    </mat-error>
-                                 </div>
+                                 <mat-error *ngIf="propriedade.cpf.invalid">
+                                    <sup>*</sup>
+                                    <span *ngIf="propriedade.cpf.errors?.required">Digite o seu CPF</span>
+                                    <span *ngIf="propriedade.cpf.errors?.minlength">Use mais caracteres</span>
+                                    <span *ngIf="propriedade.cpf.errors?.maxlength">Use menos caracteres</span>
+                                  </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -104,17 +94,12 @@
                                 <input type="text" formControlName="profissao"
                                  matInput placeholder="Digite a sua profissão"
                                  required minLength="1" maxLength="30"/>
-                                 <div *ngIf="propriedade.profissao.invalid">
-                                    <mat-error *ngIf="propriedade.profissao.touched">
-                                        <sup>*</sup> Digite a sua profissão
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.profissao.errors?.minlength">
-                                        <sup>*</sup> Use mais caracteres
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.profissao.errors?.maxlength">
-                                        <sup>*</sup> Use menos caracteres
-                                    </mat-error>
-                                 </div>
+                                 <mat-error *ngIf="propriedade.profissao.invalid">
+                                    <sup>*</sup>
+                                    <span *ngIf="propriedade.profissao.errors?.required">Digite a sua profissão</span>
+                                    <span *ngIf="propriedade.profissao.errors?.minlength">Use mais caracteres</span>
+                                    <span *ngIf="propriedade.profissao.errors?.maxlength">Use menos caracteres</span>
+                                  </mat-error>
                             </mat-form-field>
                         </div>
 
@@ -127,15 +112,12 @@
                                  matInput placeholder="Digite o seu email"
                                  required minLength="10" maxLength="50"/>
                                  <div *ngIf="propriedade.email.invalid">
-                                    <mat-error *ngIf="propriedade.email.touched">
-                                        <sup>*</sup> Digite o seu email
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.email.errors?.minlength">
-                                        <sup>*</sup> Use mais caracteres
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.email.errors?.maxlength">
-                                        <sup>*</sup> Use menos caracteres
-                                    </mat-error>
+                                    <mat-error *ngIf="propriedade.email.invalid">
+                                        <sup>*</sup>
+                                        <span *ngIf="propriedade.email.errors?.required">Digite o seu email</span>
+                                        <span *ngIf="propriedade.email.errors?.minlength">Use mais caracteres</span>
+                                        <span *ngIf="propriedade.email.errors?.maxlength">Use menos caracteres</span>
+                                      </mat-error>
                                  </div>
                             </mat-form-field>
                         </div>
@@ -148,17 +130,12 @@
                                 <input type="password" formControlName="senha"
                                  matInput placeholder="Digite a sua senha"
                                  required minLength="6" maxLength="50"/>
-                                 <div *ngIf="propriedade.senha.invalid">
-                                    <mat-error *ngIf="propriedade.senha.touched">
-                                        <sup>*</sup> Digite a sua senha
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.senha.errors?.minlength">
-                                        <sup>*</sup> Use mais caracteres
-                                    </mat-error>
-                                    <mat-error *ngIf="propriedade.senha.errors?.maxlength">
-                                        <sup>*</sup> Use menos caracteres
-                                    </mat-error>
-                                 </div>
+                                 <mat-error *ngIf="propriedade.senha.invalid">
+                                    <sup>*</sup>
+                                    <span *ngIf="propriedade.senha.errors?.required">Digite a sua senha</span>
+                                    <span *ngIf="propriedade.senha.errors?.minlength">Use mais caracteres</span>
+                                    <span *ngIf="propriedade.senha.errors?.maxlength">Use menos caracteres</span>
+                                  </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
