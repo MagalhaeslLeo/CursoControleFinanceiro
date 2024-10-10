@@ -34,11 +34,19 @@
                     <mat-form-field class="fieldWidth">
                         <mat-label>Nome</mat-label>
                         <input type="text" matInput formControlName="nome"
-                         placeholder="Digite o nome da categoria" required>
-                         <mat-error *ngIf="propriedade.nome.touched &&
-                         propriedade.nome.invalid">
+                         placeholder="Digite o nome da categoria" required
+                         minLength="6" maxLength="50">
+                         <div *ngIf="propriedade.nome.invalid">
+                         <mat-error *ngIf="propriedade.nome.touched">
                          <sup>*</sup> Digite o nome da categoria
                         </mat-error>
+                        <mat-error *ngIf="propriedade.nome.errors?.minlength">
+                            <sup>*</sup> Use mais caracteres
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.nome.errors?.maxlength">
+                            <sup>*</sup> Use menos caracteres
+                        </mat-error>
+                        </div>
                     </mat-form-field>
                 </div>
 
@@ -46,12 +54,19 @@
                     <mat-form-field class="fieldWidth">
                         <mat-label>Ícone</mat-label>
                         <input type="text" matInput formControlName="icone"
-                         placeholder="Digite o código do ícone" required>
-
-                         <mat-error *ngIf="propriedade.icone.touched &&
-                         propriedade.icone.invalid">
+                         placeholder="Digite o código do ícone" required
+                         minLength="1" maxLength="15">
+                         <div *ngIf="propriedade.icone.invalid">
+                         <mat-error *ngIf="propriedade.icone.touched">
                         <sup>*</sup> Digite o nome do ícone
                         </mat-error>
+                        <mat-error *ngIf="propriedade.icone.errors?.minlength">
+                            <sup>*</sup> Use mais caracteres
+                        </mat-error>
+                        <mat-error *ngIf="propriedade.icone.errors?.maxlength">
+                            <sup>*</sup> Use menos caracteres
+                        </mat-error>
+                        </div>
                     </mat-form-field>
                 </div>
 
