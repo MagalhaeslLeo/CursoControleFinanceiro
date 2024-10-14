@@ -29,6 +29,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 
@@ -75,13 +76,16 @@ import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registr
     MatSortModule,
     MatSnackBarModule,
     MatProgressBarModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
   providers: [
     TiposService,
     CategoriasService,
     FuncoesService,
-    HttpClientModule
+    HttpClientModule,
+    provideNgxMask()
   ],
   bootstrap: [AppComponent]
 })

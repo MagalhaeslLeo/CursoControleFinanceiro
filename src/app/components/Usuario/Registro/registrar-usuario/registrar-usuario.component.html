@@ -6,7 +6,7 @@
         <mat-divider></mat-divider>
 
         <div class="formulario">
-            <form [formGroup]="formulario">
+            <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
                 <div fxLayout="row" fxLayoutGap-="30px">
                     <div fxFlex="40" fxLayoutAlign="center end">
                         <div fxLayout="column">
@@ -17,7 +17,7 @@
                             <div fxLayoutAlign="center end">
                                 <input hidden type="file"
                                  #fileInput name="foto" formControlName="foto"
-                                 required/>
+                                 required (change)="SelecionarFoto($event)"/>
                                  <br/><br/><br/><br/>
                                  <button type="button" mat-stroked-button 
                                  color="primary" (click)="fileInput.click()">
@@ -76,7 +76,8 @@
                                 </mat-label>
                                 <input type="text" formControlName="cpf"
                                  matInput placeholder="Digite o seu CPF"
-                                 required minLength="1" maxLength="20"/>
+                                 required minLength="1" maxLength="20"
+                                 [mask]="'000.000.000-00'"/>
                                  <mat-error *ngIf="propriedade.cpf.invalid">
                                     <sup>*</sup>
                                     <span *ngIf="propriedade.cpf.errors?.required">Digite o seu CPF</span>
@@ -111,14 +112,12 @@
                                 <input type="email" formControlName="email"
                                  matInput placeholder="Digite o seu email"
                                  required minLength="10" maxLength="50"/>
-                                 <div *ngIf="propriedade.email.invalid">
                                     <mat-error *ngIf="propriedade.email.invalid">
                                         <sup>*</sup>
                                         <span *ngIf="propriedade.email.errors?.required">Digite o seu email</span>
                                         <span *ngIf="propriedade.email.errors?.minlength">Use mais caracteres</span>
                                         <span *ngIf="propriedade.email.errors?.maxlength">Use menos caracteres</span>
                                       </mat-error>
-                                 </div>
                             </mat-form-field>
                         </div>
 
