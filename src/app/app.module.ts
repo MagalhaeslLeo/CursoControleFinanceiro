@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 
@@ -37,6 +39,7 @@ import { AtualizarCategoriaComponent } from './components/Categoria/atualizar-ca
 import { DialogExclusaoFuncoesComponent, ListagemFuncoesComponent } from './components/Funcao/listagem-funcoes/listagem-funcoes.component';
 import { NovaFuncaoComponent } from './components/Funcao/nova-funcao/nova-funcao.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/atualizar-funcao.component';
+import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registrar-usuario/registrar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/a
     ListagemFuncoesComponent,
     NovaFuncaoComponent,
     AtualizarFuncaoComponent,
-    DialogExclusaoFuncoesComponent
+    DialogExclusaoFuncoesComponent,
+    RegistrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -71,13 +75,17 @@ import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/a
     MatPaginatorModule,
     MatSortModule,
     MatSnackBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FlexLayoutModule,
+    NgxMaskDirective,
+    NgxMaskPipe
   ],
   providers: [
     TiposService,
     CategoriasService,
     FuncoesService,
-    HttpClientModule
+    HttpClientModule,
+    provideNgxMask()
   ],
   bootstrap: [AppComponent]
 })

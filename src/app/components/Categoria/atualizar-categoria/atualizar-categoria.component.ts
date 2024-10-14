@@ -38,8 +38,8 @@ export class AtualizarCategoriaComponent implements OnInit {
       this.nomeCategoria = resultado.nome;
       this.formulario = new FormGroup({
         categoriaID: new FormControl(resultado.categoriaID),
-        nome: new FormControl(resultado.nome, [Validators.required, Validators.maxLength(50)]),
-          icone: new FormControl(resultado.icone, [Validators.required, Validators.maxLength(15)]),
+        nome: new FormControl(resultado.nome, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+          icone: new FormControl(resultado.icone, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]),
         tipoID: new FormControl(resultado.tipoID, [Validators.required])
       });
     });

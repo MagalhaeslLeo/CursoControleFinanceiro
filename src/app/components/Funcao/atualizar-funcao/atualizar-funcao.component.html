@@ -32,24 +32,32 @@
 
         <mat-card-content>
             <div>
-                <mat-form-field>
+                <mat-form-field class="fieldWidth">
                     <mat-label>Nome</mat-label>
                     <input type="text" formControlName="name" matInput
-                     placeholder="Digite o nome da função" required />
-                    <mat-error *ngIf="propriedade.name.touched && propriedade.name.invalid">
-                        <sup>*</sup> Digite o nome da função
-                    </mat-error>
+                     placeholder="Digite o nome da função" required
+                     minLength="6" maxLength="50" />
+                     <mat-error *ngIf="propriedade.name.invalid">
+                        <sup>*</sup>
+                        <span *ngIf="propriedade.name.errors?.required">Digite o nome da função</span>
+                        <span *ngIf="propriedade.name.errors?.minlength">Use mais caracteres</span>
+                        <span *ngIf="propriedade.name.errors?.maxlength">Use menos caracteres</span>
+                      </mat-error>
                 </mat-form-field>
             </div>
 
             <div>
-                <mat-form-field>
+                <mat-form-field class="fieldWidth">
                     <mat-label>Descrição</mat-label>
                     <input type="text" formControlName="descricao" matInput
-                     placeholder="Digite a descrição da função" required />
-                    <mat-error *ngIf="propriedade.descricao.touched && propriedade.descricao.invalid">
-                        <sup>*</sup> Digite a descrição da função
-                    </mat-error>
+                     placeholder="Digite a descrição da função" required
+                     minLength="1" maxLength="50" />
+                     <mat-error *ngIf="propriedade.descricao.invalid">
+                        <sup>*</sup>
+                        <span *ngIf="propriedade.descricao.errors?.required">Digite a descrição da função</span>
+                        <span *ngIf="propriedade.descricao.errors?.minlength">Use mais caracteres</span>
+                        <span *ngIf="propriedade.descricao.errors?.maxlength">Use menos caracteres</span>
+                      </mat-error>
                 </mat-form-field>
             </div>
         </mat-card-content>

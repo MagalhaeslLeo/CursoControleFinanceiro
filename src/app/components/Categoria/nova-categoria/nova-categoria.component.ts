@@ -31,8 +31,8 @@ export class NovaCategoriaComponent {
     });
 
     this.formulario = new FormGroup({
-      nome: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-      icone: new FormControl(null, [Validators.required, Validators.maxLength(15)]),
+      nome: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      icone: new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]),
       tipoID: new FormControl(null, [Validators.required])
     });
   }

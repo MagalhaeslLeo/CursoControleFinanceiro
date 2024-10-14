@@ -31,8 +31,8 @@ erros: string[];
 
         this.formulario = new FormGroup({
           id: new FormControl(resultado.id),
-          name: new FormControl(resultado.name, [Validators.required, Validators.maxLength(50)]),
-          descricao: new FormControl(resultado.descricao, [Validators.required, Validators.maxLength(50)])
+          name: new FormControl(resultado.name, [Validators.required, Validators.minLength(6),  Validators.maxLength(50)]),
+          descricao: new FormControl(resultado.descricao, [Validators.required, Validators.minLength(1), Validators.maxLength(50)])
         });
       });
   }

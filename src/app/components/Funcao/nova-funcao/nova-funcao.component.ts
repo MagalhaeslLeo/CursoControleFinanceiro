@@ -23,8 +23,8 @@ export class NovaFuncaoComponent implements OnInit {
       this.erros = [];
 
       this.formulario = new FormGroup({
-        name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
-        descricao: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
+        name: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+        descricao: new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
       });
   }
 
