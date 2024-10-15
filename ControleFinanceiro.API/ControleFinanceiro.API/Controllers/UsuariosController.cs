@@ -104,5 +104,31 @@ namespace ControleFinanceiro.API.Controllers
       }
       return BadRequest(model);
     }
+
+    [HttpPost("LogarUsuario")]
+    public async Task<ActionResult> LogarUsuario(LoginViewModel model)
+    {
+      if(model == null)
+      {
+        return NotFound("Usuários e / ou senhas inválidos");
+      }
+      Usuario usuario = await _usuarioRepositorio.PegarUsuarioPeloEmail(model.Email);
+      if(usuario != null)
+      {
+        //Detectar a senha do usuário
+        PasswordHasher<Usuario> passwordHasher = new PasswordHasher<Usuario>();
+        if(passwordHasher.VerifyHashedPassword(usuario, usuario.PasswordHash, model.Senha) != PasswordVerificationResult.Failed)
+        {
+          await _usuarioRepositorio.LogarUsuario(usuario, false);
+          return Ok(new
+          {
+            emailUsuarioLogado =usuario.Email,
+            usuarioId = usuario.Id
+          });
+        }
+        return NotFound("Usuário e / ou senha inválidos");
+      }
+      return NotFound("Usuário e / ou senha inválidos");
+    }
   }
 }
