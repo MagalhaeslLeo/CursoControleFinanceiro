@@ -7,6 +7,7 @@ import { ListagemFuncoesComponent } from './components/Funcao/listagem-funcoes/l
 import { NovaFuncaoComponent } from './components/Funcao/nova-funcao/nova-funcao.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/atualizar-funcao.component';
 import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registrar-usuario/registrar-usuario.component';
+import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/login-usuario.component';
 const routes: Routes = [
   {
     path: 'categorias/listagemcategoria', component: ListagemCategoriaComponent
@@ -28,6 +29,9 @@ const routes: Routes = [
   },
   {
     path: 'usuarios/registrarusuario', component: RegistrarUsuarioComponent
+  },
+  {
+    path: 'usuarios/loginusuario', component: LoginUsuarioComponent
   }
 ];
 
