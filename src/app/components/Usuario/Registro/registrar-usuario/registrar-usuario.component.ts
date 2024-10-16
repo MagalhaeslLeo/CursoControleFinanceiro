@@ -49,6 +49,7 @@ export class RegistrarUsuarioComponent {
     }
 
     EnviarFormulario(): void{
+      this.erros = [];
       const usuario = this.formulario.value;
       //Atraves do form data será enviado a foto para o backend
       const formData: FormData = new FormData();
