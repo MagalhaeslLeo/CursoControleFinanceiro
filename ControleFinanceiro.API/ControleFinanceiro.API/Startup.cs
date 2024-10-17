@@ -7,6 +7,7 @@ using ControleFinanceiro.DAL.Repositorios;
 using ControleFInanceiro.BLL.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,11 +17,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ControleFinanceiro.API
@@ -41,6 +44,30 @@ namespace ControleFinanceiro.API
       services.ConfigurarSenhaUsuario();
 
       services.AddDbContext<Contexto>(opcoes => opcoes.UseSqlServer(Configuration.GetConnectionString("ConexaoBD")));
+
+      var key = Encoding.ASCII.GetBytes(Settings.ChaveSecreta);
+
+      services.AddAuthentication(opcoes =>
+      {
+        opcoes.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        opcoes.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+      })
+        .AddJwtBearer(opcoes =>
+        {
+          opcoes.RequireHttpsMetadata = false;
+          opcoes.SaveToken = true;
+          opcoes.TokenValidationParameters = new TokenValidationParameters
+          {
+            //Significa que esse token vai ser validado
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            //Não validar destino nem origem
+            ValidateIssuer = false,
+            ValidateAudience = false
+          };
+        });
+
+
       services.AddControllers()
           .AddJsonOptions(opcoes =>
       {
@@ -70,10 +97,6 @@ namespace ControleFinanceiro.API
       {
         diretorio.RootPath = "ControleFinanceiro-UI";
       });
-      //services.AddSwaggerGen(c =>
-      //{
-      //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApplication1", Version = "v1" });
-      //});
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,8 +105,6 @@ namespace ControleFinanceiro.API
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
-        //app.UseSwagger();
-        //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
       }
       else
       {
@@ -101,6 +122,8 @@ namespace ControleFinanceiro.API
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseAuthentication();
 
       app.UseAuthorization();
 
