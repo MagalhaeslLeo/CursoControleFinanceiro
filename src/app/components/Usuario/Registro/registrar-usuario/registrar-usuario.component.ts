@@ -69,8 +69,12 @@ export class RegistrarUsuarioComponent {
 
         this.usuariosService.RegistrarUsuario(dadosRegistro).subscribe(dados=>{
           const emailUsuarioLogado = dados.emailUsuarioLogado;
+          const usuarioId = dados.usuarioId;
+          const tokenUsuarioLogado = dados.tokenUsuarioLogado
           //Local storage o usuário tem no navegador dele, assim o email poderá ser usado em todo sistema
           localStorage.setItem('EmailUsuarioLogado', emailUsuarioLogado);
+          localStorage.setItem('UsuarioId', usuarioId);
+          localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado)
           this.router.navigate(['categorias/listagemcategoria']);
         });
       }, (err)=>{

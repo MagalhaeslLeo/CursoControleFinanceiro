@@ -37,8 +37,10 @@ export class LoginUsuarioComponent implements OnInit {
     this.usuariosService.LogarUsuario(dadosLogin).subscribe(resultado=>{
       const emailUsuarioLogado = resultado.emailUsuarioLogado;
       const usuarioId = resultado.usuarioId;
+      const tokenUsuarioLogado = resultado.tokenUsuarioLogado;
       localStorage.setItem("EmailUsuarioLogado", emailUsuarioLogado);
       localStorage.setItem("UsuarioId", usuarioId);
+      localStorage.setItem("TokenUsuarioLogado", tokenUsuarioLogado);
       this.router.navigate(['categorias/listagemcategoria']);
     }, (err)=>{
       if(err.status === 400){
