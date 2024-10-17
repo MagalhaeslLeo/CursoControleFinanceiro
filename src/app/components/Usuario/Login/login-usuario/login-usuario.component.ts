@@ -21,12 +21,38 @@ export class LoginUsuarioComponent implements OnInit {
       this.erros = [];
 
       this.formulario = new FormGroup({
-        email: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(50)]),
+        email: new FormControl(null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(50)]),
         senha: new FormControl(null,[Validators.required, Validators.minLength(6), Validators.maxLength(50)])
       });
   }
 
   get propriedade(){
     return this.formulario.controls;
+  }
+
+  EnviarFormulario(): void{
+    this.erros = [];
+    const dadosLogin = this.formulario.value;
+
+    this.usuariosService.LogarUsuario(dadosLogin).subscribe(resultado=>{
+      const emailUsuarioLogado = resultado.emailUsuarioLogado;
+      const usuarioId = resultado.usuarioId;
+      localStorage.setItem("EmailUsuarioLogado", emailUsuarioLogado);
+      localStorage.setItem("UsuarioId", usuarioId);
+      this.router.navigate(['categorias/listagemcategoria']);
+    }, (err)=>{
+      if(err.status === 400){
+        //Indo de campo em campo no objeto de erro que retorna do meu BadRequest
+        //no meu backend
+        for(const campo in err.error.errors){
+          if(err.error.errors.hasOwnProperty(campo)){
+            this.erros.push(err.error.errors[campo]);
+          }
+        }
+      }
+      else{
+        this.erros.push(err.error);
+      }
+    });
   }
 }
