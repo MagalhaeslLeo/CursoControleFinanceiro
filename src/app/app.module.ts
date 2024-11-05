@@ -29,7 +29,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 
@@ -41,6 +46,13 @@ import { NovaFuncaoComponent } from './components/Funcao/nova-funcao/nova-funcao
 import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/atualizar-funcao.component';
 import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registrar-usuario/registrar-usuario.component';
 import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/login-usuario.component';
+import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
+import { HeaderComponent } from './components/Dashboard/header/header.component';
+
+//Export permite que usamos o componente, classe ou função em todo programa
+export function PegarTokenUsuario(){
+  return localStorage.getItem("TokenUsuarioLogado");
+}
 
 @NgModule({
   declarations: [
@@ -54,7 +66,9 @@ import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/
     AtualizarFuncaoComponent,
     DialogExclusaoFuncoesComponent,
     RegistrarUsuarioComponent,
-    LoginUsuarioComponent
+    LoginUsuarioComponent,
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -79,8 +93,18 @@ import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/
     MatSnackBarModule,
     MatProgressBarModule,
     FlexLayoutModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    JwtModule.forRoot({
+      config:{
+        tokenGetter: PegarTokenUsuario,
+        allowedDomains: ['localhost:5000'],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [
     TiposService,

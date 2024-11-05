@@ -1,0 +1,21 @@
+<app-header></app-header>
+
+<mat-sidenav-container>
+    <mat-sidenav class="sidenavSpacer" mode="side" opened>
+        <mat-list>
+            <mat-list-item routerLink="/categorias/listagemcategoria" style="cursor: pointer;">
+                <mat-icon>reorder</mat-icon> Categorias
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item routerLink="/funcoes/listagemfuncoes" style="cursor: pointer;">
+                <mat-icon>supervised_user_circle</mat-icon> Funções
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!--Router-outlet vai rotear os componentes pra cá-->
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

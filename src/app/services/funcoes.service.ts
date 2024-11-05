@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 
 const HttpOptions = {
   headers : new HttpHeaders({
-    'Content-Type' : 'application/json'
+    'Content-Type' : 'application/json',
+    'Authorization' : `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
   })
 };
 
