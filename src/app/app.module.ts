@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { TiposService } from '../app/services/tipos.service';
 import { CategoriasService } from '../app/services/categorias.service';
 import { FuncoesService } from './services/funcoes.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 import { ListagemCategoriaComponent, DialogExclusaoCategoriaComponent } from './components/Categoria/listagem-categoria/listagem-categoria.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -110,6 +111,7 @@ export function PegarTokenUsuario(){
     TiposService,
     CategoriasService,
     FuncoesService,
+    AuthGuardService,
     HttpClientModule,
     provideNgxMask()
   ],

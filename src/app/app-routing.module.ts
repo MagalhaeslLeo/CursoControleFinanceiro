@@ -9,10 +9,12 @@ import { AtualizarFuncaoComponent } from './components/Funcao/atualizar-funcao/a
 import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registrar-usuario/registrar-usuario.component';
 import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/login-usuario.component';
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
+import { AuthGuardService } from './services/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'categorias/listagemcategoria', component: ListagemCategoriaComponent

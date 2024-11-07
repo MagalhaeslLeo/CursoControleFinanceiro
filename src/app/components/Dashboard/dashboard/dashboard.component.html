@@ -3,14 +3,19 @@
 <mat-sidenav-container>
     <mat-sidenav class="sidenavSpacer" mode="side" opened>
         <mat-list>
+            <div *ngIf="isAdministrador">
             <mat-list-item routerLink="/categorias/listagemcategoria" style="cursor: pointer;">
                 <mat-icon>reorder</mat-icon> Categorias
             </mat-list-item>
             <mat-divider></mat-divider>
+            </div>
+
+            <div *ngIf="isAdministrador">
             <mat-list-item routerLink="/funcoes/listagemfuncoes" style="cursor: pointer;">
                 <mat-icon>supervised_user_circle</mat-icon> Funções
             </mat-list-item>
             <mat-divider></mat-divider>
+            </div>
         </mat-list>
     </mat-sidenav>
 
