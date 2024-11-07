@@ -6,7 +6,8 @@ import { Categoria } from '../models/Categoria';
 //Configuração do cabeçalho da requisição http, pois serão enviados dados para a API
 const httpOptions = {
   headers: new HttpHeaders ({
-    'Content-Type' : 'application/json'
+    'Content-Type' : 'application/json',
+    'Authorization' : `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
   })
 };
 
