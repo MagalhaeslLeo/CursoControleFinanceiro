@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,11 +9,13 @@ using ControleFInanceiro.BLL.Models;
 using ControleFinanceiro.DAL;
 using ControleFinanceiro.DAL.Interfaces;
 using ControleFinanceiro.API.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ControleFinanceiro.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Administrador")]
     public class FuncoesController : ControllerBase
     {
         private readonly IFuncaoRepositorio _funcaoRepositorio;
