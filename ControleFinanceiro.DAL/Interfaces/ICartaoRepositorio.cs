@@ -1,0 +1,14 @@
+using ControleFInanceiro.BLL.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ControleFinanceiro.DAL.Interfaces
+{
+  public interface ICartaoRepositorio : IRepositorioGenerico<Cartao>
+  {
+    IQueryable<Cartao> PegarCartoesPeloUsuarioId(string usuarioId);
+  }
+}

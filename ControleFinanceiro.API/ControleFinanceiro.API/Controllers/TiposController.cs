@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,26 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using ControleFInanceiro.BLL.Models;
 using ControleFinanceiro.DAL;
 using ControleFinanceiro.DAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ControleFinanceiro.API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class TiposController : ControllerBase
+  [Authorize]
+  [Route("api/[controller]")]
+  [ApiController]
+  public class TiposController : ControllerBase
+  {
+    private readonly ITipoRepositorio _tipoRepositorio;
+
+    public TiposController(ITipoRepositorio tipoRepositorio)
     {
-        private readonly ITipoRepositorio _tipoRepositorio;
-
-        public TiposController(ITipoRepositorio tipoRepositorio)
-        {
-            _tipoRepositorio = tipoRepositorio;
-        }
-
-        // GET: api/Tipos
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tipo>>> GetTipos()
-        {
-            return await _tipoRepositorio.PegarTodos().ToListAsync();
-        }
-
+      _tipoRepositorio = tipoRepositorio;
     }
+
+    // GET: api/Tipos
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Tipo>>> GetTipos()
+    {
+      return await _tipoRepositorio.PegarTodos().ToListAsync();
+    }
+
+  }
 }
