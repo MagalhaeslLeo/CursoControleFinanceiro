@@ -23,7 +23,7 @@ namespace ControleFinanceiro.API.Validacoes
         .NotNull().WithMessage("Preencha o número do cartão")
         .NotEmpty().WithMessage("Preencha o número do cartão")
         .MinimumLength(1).WithMessage("Use mais caracteres")
-        .MaximumLength(15).WithMessage("Use menos caracteres");
+        .MaximumLength(20).WithMessage("Use menos caracteres");
 
 
       RuleFor(c => c.Limite)
