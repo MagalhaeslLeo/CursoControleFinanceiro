@@ -36,4 +36,30 @@ export class NovoCartaoComponent implements OnInit {
   VoltarListagem(): void {
     this.router.navigate(['cartoes/listagemcartoes']);
   }
+
+  EnviarFormulario(): void {
+    this.erros = [];
+    const cartao = this.formulario.value;
+
+    this.cartoesService.NovoCartao(cartao).subscribe(resultado =>{
+      //this.router.navigate(['cartoes/listagemcartoes']);
+      this.snackBar.open(resultado.mensagem, '', {
+        duration: 2000,
+        horizontalPosition: "right",
+        verticalPosition: "top"
+      });
+    },
+    (err)=>{
+      if(err.status === 400){
+        //Indo de campo em campo no objeto de erro que retorna do meu BadRequest
+        //no meu backend
+        for(const campo in err.error.errors){
+          if(err.error.errors.hasOwnProperty(campo)){
+            this.erros.push(err.error.errors[campo]);
+          }
+        }
+      }
+    }
+  );
+  }
 }
