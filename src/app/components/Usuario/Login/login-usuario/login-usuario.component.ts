@@ -41,7 +41,7 @@ export class LoginUsuarioComponent implements OnInit {
       localStorage.setItem("EmailUsuarioLogado", emailUsuarioLogado);
       localStorage.setItem("UsuarioId", usuarioId);
       localStorage.setItem("TokenUsuarioLogado", tokenUsuarioLogado);
-      this.router.navigate(['categorias/listagemcategoria']);
+      this.router.navigate(['cartoes/novocartao']);
     }, (err)=>{
       if(err.status === 400){
         //Indo de campo em campo no objeto de erro que retorna do meu BadRequest

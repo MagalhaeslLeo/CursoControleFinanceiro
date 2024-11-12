@@ -49,6 +49,8 @@ import { RegistrarUsuarioComponent } from './components/Usuario/Registro/registr
 import { LoginUsuarioComponent } from './components/Usuario/Login/login-usuario/login-usuario.component';
 import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.component';
 import { HeaderComponent } from './components/Dashboard/header/header.component';
+import { CartoesService } from './services/cartoes.service';
+import { NovoCartaoComponent } from './components/Cartao/novo-cartao/novo-cartao.component';
 
 //Export permite que usamos o componente, classe ou função em todo programa
 export function PegarTokenUsuario(){
@@ -69,7 +71,8 @@ export function PegarTokenUsuario(){
     RegistrarUsuarioComponent,
     LoginUsuarioComponent,
     DashboardComponent,
-    HeaderComponent
+    HeaderComponent,
+    NovoCartaoComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +114,7 @@ export function PegarTokenUsuario(){
     TiposService,
     CategoriasService,
     FuncoesService,
+    CartoesService,
     AuthGuardService,
     HttpClientModule,
     provideNgxMask()
