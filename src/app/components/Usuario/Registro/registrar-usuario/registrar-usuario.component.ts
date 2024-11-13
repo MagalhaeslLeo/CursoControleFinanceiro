@@ -75,7 +75,7 @@ export class RegistrarUsuarioComponent {
           localStorage.setItem('EmailUsuarioLogado', emailUsuarioLogado);
           localStorage.setItem('UsuarioId', usuarioId);
           localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado)
-          this.router.navigate(['categorias/listagemcategoria']);
+          this.router.navigate(['cartoes/listagemcartoes']);
         });
       }, (err)=>{
         if(err.status === 400){

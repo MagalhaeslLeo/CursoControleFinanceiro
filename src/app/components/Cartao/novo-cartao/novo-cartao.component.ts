@@ -7,7 +7,7 @@ import { CartoesService } from 'src/app/services/cartoes.service';
 @Component({
   selector: 'app-novo-cartao',
   templateUrl: './novo-cartao.component.html',
-  styleUrls: ['./novo-cartao.component.css']
+  styleUrls: ['../listagem-cartoes/listagem-cartoes.component.css']
 })
 export class NovoCartaoComponent implements OnInit {
   formulario: any;
@@ -42,7 +42,7 @@ export class NovoCartaoComponent implements OnInit {
     const cartao = this.formulario.value;
 
     this.cartoesService.NovoCartao(cartao).subscribe(resultado =>{
-      //this.router.navigate(['cartoes/listagemcartoes']);
+      this.router.navigate(['cartoes/listagemcartoes']);
       this.snackBar.open(resultado.mensagem, '', {
         duration: 2000,
         horizontalPosition: "right",
