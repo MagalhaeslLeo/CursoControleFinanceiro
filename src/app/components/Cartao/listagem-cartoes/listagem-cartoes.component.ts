@@ -39,7 +39,7 @@ export class ListagemCartoesComponent implements OnInit {
         return ['nome', 'bandeira', 'numero', 'limite', 'acoes'];
   }
 
-  AbrirDialog(cartaoId: number, nome: string): void{
+  AbrirDialog(cartaoID: number, nome: string): void{
     
   }
 }
