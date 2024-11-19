@@ -8,7 +8,7 @@
             <mat-card-title><h3>Atualizar o cartão {{numeroCartao}}</h3></mat-card-title>
         </mat-card-header>
 
-        <form [formGroup]="formulario">
+        <form [formGroup]="formulario" (ngSubmit)="EnviarFormulario()">
             <div class="cardErros" *ngIf="erros.length > 0">
                 <mat-card>
                     <mat-card-header>

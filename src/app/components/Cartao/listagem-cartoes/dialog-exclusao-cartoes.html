@@ -3,12 +3,12 @@
 </h1>
 
 <div mat-dialog-content>
-    Prosseguir com a exclusão do cartão {{dados.nome}}?
+    Prosseguir com a exclusão do cartão {{data.numero}}?
 </div>
 
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button [mat-dialog-close]="true" (click)="ExcluirCartao(dados.cartaoId)">
+    <button mat-button [mat-dialog-close]="true" (click)="ExcluirCartao(data.cartaoId)">
         Confirmar
     </button>
 </mat-dialog-actions>

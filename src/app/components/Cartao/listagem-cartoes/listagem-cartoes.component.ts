@@ -39,18 +39,31 @@ export class ListagemCartoesComponent implements OnInit {
         return ['nome', 'bandeira', 'numero', 'limite', 'acoes'];
   }
 
-  AbrirDialog(cartaoID: number, nome: string): void{
-    
+  AbrirDialog(cartaoId: number, numero: string): void{
+    this.dialog.open(DialogExclusaoCartoesComponent, {
+      data:{
+        cartaoId: cartaoId,
+        numero: numero
+      },
+    }).afterClosed().subscribe(resultado=>{
+      if(resultado === true){
+        this.cartoesService.PegarCartoesPeloUsuarioId(this.usuarioId).subscribe(dados=>{
+          this.cartoes.data = dados;
+          this.cartoes.paginator = this.paginator;
+        });
+        this.displayedColumns = this.ExibirColunas();
+      }
+    });
   }
 }
 
 @Component({
-  selector: 'app-dialog-exclusao-cartao',
-  templateUrl: 'dialog-exclusao-cartao.html'
+  selector: 'app-dialog-exclusao-cartoes',
+  templateUrl: 'dialog-exclusao-cartoes.html'
 })
 
-export class DialogExclusaoCartaoComponent{
-  constructor(@Inject(MAT_DIALOG_DATA) public dados: any,
+export class DialogExclusaoCartoesComponent{
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   private cartoesService: CartoesService,
   private snackBar: MatSnackBar
 ){ }

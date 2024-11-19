@@ -51,7 +51,7 @@ import { DashboardComponent } from './components/Dashboard/dashboard/dashboard.c
 import { HeaderComponent } from './components/Dashboard/header/header.component';
 import { CartoesService } from './services/cartoes.service';
 import { NovoCartaoComponent } from './components/Cartao/novo-cartao/novo-cartao.component';
-import { DialogExclusaoCartaoComponent, ListagemCartoesComponent } from './components/Cartao/listagem-cartoes/listagem-cartoes.component';
+import { DialogExclusaoCartoesComponent, ListagemCartoesComponent } from './components/Cartao/listagem-cartoes/listagem-cartoes.component';
 import { AtualizarCartaoComponent } from './components/Cartao/atualizar-cartao/atualizar-cartao.component';
 
 //Export permite que usamos o componente, classe ou função em todo programa
@@ -76,7 +76,7 @@ export function PegarTokenUsuario(){
     HeaderComponent,
     NovoCartaoComponent,
     ListagemCartoesComponent,
-    DialogExclusaoCartaoComponent,
+    DialogExclusaoCartoesComponent,
     AtualizarCartaoComponent
   ],
   imports: [
