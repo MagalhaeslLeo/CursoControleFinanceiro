@@ -92,5 +92,11 @@ namespace ControleFinanceiro.API.Controllers
       });
     }
 
+    [HttpGet("FiltrarCartoes/{numeroCartao}")]
+    public async Task<IEnumerable<Cartao>> FiltrarCartoes(string numeroCartao)
+    {
+      return await _cartaoRepositorio.FiltrarCartoes(numeroCartao).ToListAsync();
+    }
+
   }
 }
