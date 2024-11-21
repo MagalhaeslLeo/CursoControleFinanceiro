@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { map, Observable, startWith } from 'rxjs';
 import { CartoesService } from 'src/app/services/cartoes.service';
 
 @Component({
@@ -16,6 +18,9 @@ export class ListagemCartoesComponent implements OnInit {
   cartoes = new MatTableDataSource<any>();
   displayedColumns: string[];
   usuarioId: string = localStorage.getItem('UsuarioId') ?? '';
+  autoCompleteInput = new FormControl();
+  opcoesNumeros: string[] = [];
+  numeroCartoes: Observable<string[]>;
 
   @ViewChild(MatPaginator, {static: true})
   paginator: MatPaginator;
@@ -27,16 +32,44 @@ export class ListagemCartoesComponent implements OnInit {
 
   ngOnInit(): void {
       this.cartoesService.PegarCartoesPeloUsuarioId(this.usuarioId).subscribe(resultado =>{
+        resultado.forEach(numero => {
+          this.opcoesNumeros.push(numero.numero);
+        });
+
         this.cartoes.data = resultado;
         this.cartoes.paginator = this.paginator;
         this.cartoes.sort = this.sort;
       });
       
       this.displayedColumns = this.ExibirColunas();
+
+      this.numeroCartoes = this.autoCompleteInput.valueChanges.pipe(
+        startWith(''),
+         map((numero) => this.FiltrarCartoes(numero))
+      );
   }
 
   ExibirColunas(): string[]{
         return ['nome', 'bandeira', 'numero', 'limite', 'acoes'];
+  }
+
+  FiltrarCartoes(numero: string): string[]{
+    if(numero.trim().length >= 4){
+      this.cartoesService.FiltrarCartoes(numero).subscribe(resultado =>{
+        this.cartoes.data = resultado;
+      });
+    }
+    else{
+      if(numero === ''){
+        this.cartoesService.PegarCartoesPeloUsuarioId(this.usuarioId).subscribe(resultado =>{
+          this.cartoes.data = resultado;
+        });
+      }
+    }
+
+    return this.opcoesNumeros.filter(nc =>
+       nc.toLowerCase().includes(numero.toLowerCase())
+      );
   }
 
   AbrirDialog(cartaoId: number, numero: string): void{
