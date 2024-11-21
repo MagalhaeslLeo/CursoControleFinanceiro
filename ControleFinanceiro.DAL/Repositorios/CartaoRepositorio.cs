@@ -16,6 +16,19 @@ namespace ControleFinanceiro.DAL.Repositorios
       _contexto = contexto;
     }
 
+    public IQueryable<Cartao> FiltrarCartoes(string numeroCartao)
+    {
+      try
+      {
+        return _contexto.Cartoes.Where(c=>c.Numero.Contains(numeroCartao));
+      }
+      catch (Exception expection)
+      {
+
+        throw new Exception(expection.Message, expection);
+      }
+    }
+
     public IQueryable<Cartao> PegarCartoesPeloUsuarioId(string usuarioId)
     {
       try
