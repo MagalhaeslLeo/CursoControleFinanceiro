@@ -43,4 +43,9 @@ export class CartoesService {
     const apiUrl = `${this.url}/${cartaoId}`;
     return this.http.delete<number>(apiUrl, httpOptions);
   }
+
+  FiltrarCartoes(numeroCartao: string): Observable<Cartao[]>{
+    const apiUrl = `${this.url}/FiltrarCartoes/${numeroCartao}`;
+    return this.http.get<Cartao[]>(apiUrl);
+  }
 }

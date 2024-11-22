@@ -17,6 +17,20 @@
         </mat-grid-list>
     <mat-divider></mat-divider>
 
+    <div class="divAutoComplete">
+        <form>
+            <mat-form-field class="autoCompleteInput">
+                <input type="text" matInput placeholder="Pesquisar..." 
+                [formControl]="autoCompleteInput" [matAutocomplete]="auto"/>
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let numero of numeroCartoes | async" [value]="numero">
+                        {{numero}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+    </div>
+
     <table *ngIf="cartoes" mat-table [dataSource]="cartoes" matSort class="mat-elevation-z8 tabela">
 
         <ng-container matColumnDef="nome">
