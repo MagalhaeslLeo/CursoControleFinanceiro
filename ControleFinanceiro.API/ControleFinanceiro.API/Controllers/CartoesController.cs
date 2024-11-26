@@ -16,10 +16,12 @@ namespace ControleFinanceiro.API.Controllers
   public class CartoesController : ControllerBase
   {
     private readonly ICartaoRepositorio _cartaoRepositorio;
+    private readonly IDespesaRepositorio _despesaRepositorio;
 
-    public CartoesController(ICartaoRepositorio cartaoRepositorio)
+    public CartoesController(ICartaoRepositorio cartaoRepositorio, IDespesaRepositorio despesaRepositorio)
     {
       _cartaoRepositorio = cartaoRepositorio;
+      _despesaRepositorio = despesaRepositorio;
     }
 
     [HttpGet("PegarCartoesPeloUsuarioId/{usuarioId}")]
@@ -84,6 +86,10 @@ namespace ControleFinanceiro.API.Controllers
       {
         return NotFound();
       }
+
+      IEnumerable<Despesa> despesas = await _despesaRepositorio.PegarDespesasPeloCartaoId(cartao.CartaoID);
+      _despesaRepositorio.ExcluirDespesas(despesas);
+
 
       await _cartaoRepositorio.Excluir(cartao);
       return Ok(new

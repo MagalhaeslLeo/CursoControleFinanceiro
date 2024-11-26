@@ -30,6 +30,19 @@ namespace ControleFinanceiro.DAL.Repositorios
       }
     }
 
+    public async Task<IEnumerable<Despesa>> PegarDespesasPeloCartaoId(int cartaoId)
+    {
+      try
+      {
+        return await _contexto.Despesas.Where(d=>d.CartaoID== cartaoId).ToListAsync();
+      }
+      catch (Exception expection)
+      {
+
+        throw new Exception(expection.Message, expection);
+      }
+    }
+
     public IQueryable<Despesa> PegarDespesasPeloUsuarioId(string usuarioId)
     {
       try
