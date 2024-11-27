@@ -53,6 +53,9 @@ import { CartoesService } from './services/cartoes.service';
 import { NovoCartaoComponent } from './components/Cartao/novo-cartao/novo-cartao.component';
 import { DialogExclusaoCartoesComponent, ListagemCartoesComponent } from './components/Cartao/listagem-cartoes/listagem-cartoes.component';
 import { AtualizarCartaoComponent } from './components/Cartao/atualizar-cartao/atualizar-cartao.component';
+import { MesService } from './services/mes.service';
+import { DespesasService } from './services/despesas.service';
+import { NovaDespesaComponent } from './components/Despesa/nova-despesa/nova-despesa.component';
 
 //Export permite que usamos o componente, classe ou função em todo programa
 export function PegarTokenUsuario(){
@@ -77,7 +80,8 @@ export function PegarTokenUsuario(){
     NovoCartaoComponent,
     ListagemCartoesComponent,
     DialogExclusaoCartoesComponent,
-    AtualizarCartaoComponent
+    AtualizarCartaoComponent,
+    NovaDespesaComponent
   ],
   imports: [
     BrowserModule,
@@ -120,6 +124,8 @@ export function PegarTokenUsuario(){
     CategoriasService,
     FuncoesService,
     CartoesService,
+    MesService,
+    DespesasService,
     AuthGuardService,
     HttpClientModule,
     provideNgxMask()
