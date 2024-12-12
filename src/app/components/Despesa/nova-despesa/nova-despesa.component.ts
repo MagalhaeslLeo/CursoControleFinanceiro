@@ -32,6 +32,8 @@ export class NovaDespesaComponent implements OnInit {
     private mesesService: MesService) {  }
 
   ngOnInit(): void {
+    this.erros = [];
+
       this.cartoesService.PegarCartoesPeloUsuarioId(this.usuarioId).subscribe(resultado =>{
         this.cartoes = resultado;
       });
@@ -47,7 +49,7 @@ export class NovaDespesaComponent implements OnInit {
       this.formulario = new FormGroup({
         cartaoId: new FormControl(null, [Validators.required]),
         descricao: new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]),
-        categoriaId: new FormControl(null, [Validators.required]),
+        categoriaID: new FormControl(null, [Validators.required]),
         valor: new FormControl(null, [Validators.required]),
         dia: new FormControl(null, [Validators.required]),
         mesId: new FormControl(null, [Validators.required]),
